@@ -14,6 +14,7 @@ class Book:
 
     def mark_as_returned(self):
         self.is_available = True
+
     def __str__(self):
         return f"'{self.title}' by {self.author} - {'Available' if self.is_available else 'Borrowed'}"
 
@@ -22,6 +23,8 @@ class User:
     def __init__(self, name: str):
         self.name = name
         self.borrowed_books: list[Book] = []
+    def __str__(self):
+        return f" i am {self.name}"
 
     def borrow(self, book: Book):
         if book.is_available:
@@ -44,6 +47,8 @@ class Library:
     def __init__(self):
         self.books: list[Book] = []
         self.users: list[User] = []
+    def __str__(self):
+        return f" this is  a library with {len(self.users)} Users and {len(self.books)} Books"
 
     def add_book(self, book: Book):
         self.books.append(book)
@@ -63,7 +68,7 @@ class Library:
 
 
 # TODO: write tests for the library system
-assert 4==5
+assert 4!=5 , "they are not equal"
 # Test 1: Create a Book and verify its attributes
 book1 = Book("Al-Muqaddimah", "Ibn Khaldun")
 assert book1.title == "Al-Muqaddimah"
@@ -93,9 +98,22 @@ book2 = Book("Al-Shifa", "Ibn Sina")
 user1.borrow(book2)
 assert book2.is_available is False  
 
+khazina=Library()
+user2=User("Nabil")
+
+assert khazina.books==[]
+assert khazina.users==[]
+khazina.add_book(book1)
+khazina.add_book(book2)
+assert khazina.books == [book1,book2]
+assert len(khazina.books)==2
+khazina.register_user(user1)
+khazina.register_user(user2)
+assert len(khazina.users) == 2
+khazina.checkout(book1,user1)
+khazina.checkout(book2,user2)
+assert book1.is_available == False
+assert book1 in user1.borrowed_books  
 
 
-print ("All tests passed!")
-print("Library system is working correctly.")
-print(book1)
-print(user1)
+print("THE END")
