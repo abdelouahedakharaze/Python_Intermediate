@@ -14,6 +14,8 @@ class Book:
 
     def mark_as_returned(self):
         self.is_available = True
+    def __str__(self):
+        return f"'{self.title}' by {self.author} - {'Available' if self.is_available else 'Borrowed'}"
 
 
 class User:
@@ -57,3 +59,43 @@ class Library:
 
 
 
+
+
+
+# TODO: write tests for the library system
+assert 4==5
+# Test 1: Create a Book and verify its attributes
+book1 = Book("Al-Muqaddimah", "Ibn Khaldun")
+assert book1.title == "Al-Muqaddimah"
+assert book1.author == "Ibn Khaldun"
+assert book1.is_available is True
+
+# Test 2: Mark a book as borrowed and check its availability
+book1.mark_as_borrowed()
+assert book1.is_available is False
+
+# Test 3: Mark a book as returned and check its availability
+book1.mark_as_returned()
+assert book1.is_available is True
+
+# Test 4: Create a User and verify their name and borrowed_books list
+user1 = User("Ali")
+assert user1.name == "Ali"
+assert user1.borrowed_books == []
+
+# Test 5: User borrows a book that is available
+user1.borrow(book1)
+assert book1.is_available is False
+assert book1 in user1.borrowed_books
+
+# Test 6: User tries to borrow a book that is already borrowed
+book2 = Book("Al-Shifa", "Ibn Sina")
+user1.borrow(book2)
+assert book2.is_available is False  
+
+
+
+print ("All tests passed!")
+print("Library system is working correctly.")
+print(book1)
+print(user1)
