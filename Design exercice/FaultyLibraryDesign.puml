@@ -1,0 +1,34 @@
+@startuml FaultyLibraryDesign
+
+class Library {
+  +books: List<Book>
+  +users: List<User>
+  +checkout(book: Book)
+  +return(book: Book)
+  +addBook(book: Book)
+  +removeBook(book: Book)
+  +addUser(user: User)
+  +removeUser(user: User)
+}
+
+class Book {
+  +title: string
+  +author: string
+  +isAvailable: bool
+  +checkoutStatus: bool
+  +checkout()
+  +return()
+}
+
+class User {
+  +name: string
+  +borrowedBooks: List<Book>
+  +checkout(book: Book)
+  +return(book: Book)
+}
+
+Library --> Book
+Library --> User
+User --> Book
+
+@enduml

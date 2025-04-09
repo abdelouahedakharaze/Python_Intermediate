@@ -1,8 +1,4 @@
 # Python_Intermediatehello
-hello
-hello
-hello
-hello
-hello
-hello
-hello
+personal project for intermediate python course
+not beneficial for others
+sorry 

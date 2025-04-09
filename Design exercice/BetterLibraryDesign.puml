@@ -1,0 +1,29 @@
+@startuml BetterLibraryDesign
+
+class Library {
+  +books: List<Book>
+  +users: List<User>
+  +checkout(book: Book, user: User)
+  +return(book: Book, user: User)
+}
+
+class Book {
+  +title: string
+  +author: string
+  +isAvailable: bool
+  +markAsBorrowed()
+  +markAsReturned()
+}
+
+class User {
+  +name: string
+  +borrowedBooks: List<Book>
+  +borrow(book: Book)
+  +return(book: Book)
+}
+
+Library --> Book
+Library --> User
+User --> Book
+
+@enduml
